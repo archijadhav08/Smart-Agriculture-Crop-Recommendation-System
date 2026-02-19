@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🌱 Smart Agriculture System 🌾</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI Emoji", "Apple Color Emoji", Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: slide 35s infinite ease-in-out;
+        }
+
+        /* 🌾 Background Image Slider */
+        @keyframes slide {
+            0% { background-image: url("{{ url_for('static', filename='farm1.jpg') }}"); }
+            14% { background-image: url("{{ url_for('static', filename='farm2.jpg') }}"); }
+            28% { background-image: url("{{ url_for('static', filename='farm3.jpg') }}"); }
+            42% { background-image: url("{{ url_for('static', filename='farm4.jpg') }}"); }
+            56% { background-image: url("{{ url_for('static', filename='farm5.jpg') }}"); }
+            70% { background-image: url("{{ url_for('static', filename='farm6.jpg') }}"); }
+            84% { background-image: url("{{ url_for('static', filename='farm7.jpg') }}"); }
+            100% { background-image: url("{{ url_for('static', filename='farm1.jpg') }}"); }
+        }
+
+        .card {
+            background: rgba(255,255,255,0.92);
+            padding: 30px;
+            width: 420px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            text-align: center;
+            backdrop-filter: blur(8px);
+        }
+
+        h1 {
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #2e7d32;
+            outline: none;
+            box-shadow: 0 0 5px #2e7d32;
+        }
+
+        button {
+            width: 95%;
+            padding: 12px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1b5e20;
+            transform: scale(1.05);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 12px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #1b5e20;
+        }
+
+        .footer {
+            margin-top: 15px;
+            font-size: 13px;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🌱 Smart Agriculture 🌾</h1>
+
+    <form action="/predict" method="POST">
+
+        <input type="number" step="any" name="N" placeholder="🌿 Nitrogen (N)" required>
+        <input type="number" step="any" name="P" placeholder="🌾 Phosphorus (P)" required>
+        <input type="number" step="any" name="K" placeholder="🍀 Potassium (K)" required>
+        <input type="number" step="any" name="temperature" placeholder="🌡 Temperature (°C)" required>
+        <input type="number" step="any" name="humidity" placeholder="💧 Humidity (%)" required>
+        <input type="number" step="any" name="ph" placeholder="⚗ pH Value" required>
+        <input type="number" step="any" name="rainfall" placeholder="🌧 Rainfall (mm)" required>
+
+        <button type="submit">🚜 Predict Best Crop 🌽</button>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            🌟 {{ prediction_text }} 🌟
+        </div>
+    {% endif %}
+
+    <div class="footer">
+        👩‍💻 Developed by Archi Jadhav 💚
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
